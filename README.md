@@ -30,6 +30,15 @@ Code2Diagram es una herramienta que **analiza tu código fuente y genera diagram
 - **🔍 Detección de issues** - Identifica problemas potenciales
 - **💡 Recomendaciones inteligentes** - Mejoras basadas en best practices
 
+## 🚀 Despliegue en Vivo
+
+### Opción 1: 🎯 Usar la Versión en Vivo
+La aplicación está desplegada y funcionando:
+- **Frontend**: [https://code-2-diagram.vercel.app](https://code-2-diagram.vercel.app)
+- **Backend**: [https://code-2-diagram.onrender.com](https://code-2-diagram.onrender.com)
+
+
+
 ## 🏗️ Arquitectura
 
 ```mermaid
