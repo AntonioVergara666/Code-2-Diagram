@@ -1,57 +1,58 @@
-# 🚀 Code2Diagram
+🚀 Code2Diagram
+Visualiza la arquitectura de tu código automáticamente
 
-**Visualiza la arquitectura de tu código automáticamente**
+https://img.shields.io/badge/Code-Analysis-blue
+https://img.shields.io/badge/Open-Source-green
+https://img.shields.io/badge/JavaScript-ES6+-yellow
 
-![Code Analysis](https://img.shields.io/badge/Code-Analysis-blue)
-![Open Source](https://img.shields.io/badge/Open-Source-green)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
+✨ ¿Para qué sirve?
+Code2Diagram es una herramienta que analiza tu código fuente y genera diagramas de arquitectura automáticamente. Convierte código complejo en visualizaciones claras que te ayudan a:
 
-## ✨ ¿Para qué sirve?
+🔍 Entender proyectos legacy rápidamente
 
-Code2Diagram es una herramienta que **analiza tu código fuente y genera diagramas de arquitectura automáticamente**. Convierte código complejo en visualizaciones claras que te ayudan a:
+📊 Visualizar dependencias entre módulos
 
-- 🔍 **Entender proyectos legacy** rápidamente
-- 📊 **Visualizar dependencias** entre módulos
-- 🎯 **Identificar problemas** de arquitectura
-- 🚀 **Onboarding rápido** en nuevos proyectos
+🎯 Identificar problemas de arquitectura
 
-## 🛠️ ¿Cómo funciona?
+🚀 Onboarding rápido en nuevos proyectos
 
-1. **Ingresa tu código** (editor, GitHub o archivo)
-2. **Analiza automáticamente** clases, métodos y dependencias  
-3. **Genera diagramas** interactivos de la arquitectura
-4. **Recibe recomendaciones** para mejorar tu código
+🛠️ ¿Cómo funciona?
+Ingresa tu código (editor, GitHub o archivo)
 
-## 🌟 Características principales
+Analiza automáticamente clases, métodos y dependencias
 
-- **⚡ Análisis en tiempo real** - Resultados instantáneos
-- **📁 Multi-fuente** - Editor, GitHub o upload de archivos
-- **🎨 Diagramas interactivos** - Visualiza relaciones entre componentes
-- **🔍 Detección de issues** - Identifica problemas potenciales
-- **💡 Recomendaciones inteligentes** - Mejoras basadas en best practices
+Genera diagramas interactivos de la arquitectura
 
-## 🚀 Despliegue en Vivo
+Recibe recomendaciones para mejorar tu código
 
-### Opción 1: 🎯 Usar la Versión en Vivo
+🌟 Características principales
+⚡ Análisis en tiempo real - Resultados instantáneos
+
+📁 Multi-fuente - Editor, GitHub o upload de archivos
+
+🎨 Diagramas interactivos - Visualiza relaciones entre componentes
+
+🔍 Detección de issues - Identifica problemas potenciales
+
+💡 Recomendaciones inteligentes - Mejoras basadas en best practices
+
+🚀 Despliegue en Vivo
+Opción 1: 🎯 Usar la Versión en Vivo
 La aplicación está desplegada y funcionando:
-- **Frontend**: [https://code-2-diagram.vercel.app](https://code-2-diagram.vercel.app)
-- **Backend**: [https://code-2-diagram.onrender.com](https://code-2-diagram.onrender.com)
 
+Frontend: https://code-2-diagram.vercel.app
 
+Backend: https://code-2-diagram.onrender.com
 
-## 🏗️ Arquitectura
-
-```mermaid
+🏗️ Arquitectura
 graph TD
-    Frontend[Frontend React] --> Backend[Backend Node.js]
-    Backend --> Analyzer[Analizador de Código]
-    Backend --> GitHub[GitHub API]
-    Analyzer --> Diagram[Generador de Diagramas]
+    A[Frontend React] --> B[Backend Node.js]
+    B --> C[Analizador de Código]
+    B --> D[GitHub API]
+    C --> E[Generador de Diagramas]
 
-    
-    
-    
- 📦 Tech Stack
+
+📦 Tech Stack
 Frontend: HTML5, CSS3, JavaScript (ES6+)
 
 Backend: Node.js, Express.js
@@ -61,6 +62,8 @@ Análisis: BabelParser, AST Analysis
 Diagramas: Mermaid.js
 
 API: GitHub REST API
+
+Deploy: Vercel + Render
 
 🎯 Open Source
 ¡Este proyecto es 100% Open Source! 🎉
@@ -73,7 +76,7 @@ API: GitHub REST API
 
 ✅ Comunidad - Hecho por devs para devs
 
-🚀 Quick Start
+🚀 Quick Start Local
 bash
 # Backend
 cd backend
