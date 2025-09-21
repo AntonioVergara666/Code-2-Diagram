@@ -10,9 +10,16 @@ mermaid.initialize({
     }
 });
 
-// Variables globales
-let currentInputMethod = 'editor';
-const API_BASE_URL = 'http://localhost:3000/api';
+// Configuración automática de API URL
+const isDevelopment = window.location.hostname === 'localhost' || 
+                     window.location.hostname === '127.0.0.1';
+
+const API_BASE_URL = isDevelopment 
+  ? 'http://localhost:3000/api'
+  : 'https://code-2-diagram.onrender.com/api';
+
+console.log('🚀 Conectando a API:', API_BASE_URL);
+
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {

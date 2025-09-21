@@ -7,18 +7,30 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 🔧 Configuración COMPLETA de CORS - Esto soluciona los problemas de conexión
+// En backend/server.js
+const cors = require('cors');
+
+const allowedOrigins = [
+  'http://localhost:8000',
+  'http://localhost:3000',
+  'https://tu-frontend.vercel.app',
+  'https://tu-frontend.netlify.app',
+  /\.vercel\.app$/,
+  /\.netlify\.app$/,
+  /\.onrender\.com$/
+];
+
 app.use(cors({
-  origin: [
-    'http://127.0.0.1:5500',    // Live Server default
-    'http://localhost:5500',    // Live Server default  
-    'http://127.0.0.1:3000',
-    'http://localhost:3000',
-    'http://127.0.0.1:8000',
-    'http://localhost:8000'
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.some(pattern => 
+        typeof pattern === 'string' ? origin === pattern : pattern.test(origin)
+    )) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
 
 // 📦 Middleware para parsing de datos
