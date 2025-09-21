@@ -1,58 +1,58 @@
-🚀 Code2Diagram
-Visualiza la arquitectura de tu código automáticamente
+# 🚀 Code2Diagram
 
-https://img.shields.io/badge/Code-Analysis-blue
-https://img.shields.io/badge/Open-Source-green
-https://img.shields.io/badge/JavaScript-ES6+-yellow
+**Visualiza la arquitectura de tu código automáticamente**
 
-✨ ¿Para qué sirve?
-Code2Diagram es una herramienta que analiza tu código fuente y genera diagramas de arquitectura automáticamente. Convierte código complejo en visualizaciones claras que te ayudan a:
+![Code Analysis](https://img.shields.io/badge/Code-Analysis-blue)
+![Open Source](https://img.shields.io/badge/Open-Source-green)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 
-🔍 Entender proyectos legacy rápidamente
+## ✨ ¿Para qué sirve?
 
-📊 Visualizar dependencias entre módulos
+Code2Diagram es una herramienta que **analiza tu código fuente y genera diagramas de arquitectura automáticamente**. Convierte código complejo en visualizaciones claras que te ayudan a:
 
-🎯 Identificar problemas de arquitectura
+- 🔍 **Entender proyectos legacy** rápidamente
+- 📊 **Visualizar dependencias** entre módulos
+- 🎯 **Identificar problemas** de arquitectura
+- 🚀 **Onboarding rápido** en nuevos proyectos
 
-🚀 Onboarding rápido en nuevos proyectos
+## 🛠️ ¿Cómo funciona?
 
-🛠️ ¿Cómo funciona?
-Ingresa tu código (editor, GitHub o archivo)
+1. **Ingresa tu código** (editor, GitHub o archivo)
+2. **Analiza automáticamente** clases, métodos y dependencias  
+3. **Genera diagramas** interactivos de la arquitectura
+4. **Recibe recomendaciones** para mejorar tu código
 
-Analiza automáticamente clases, métodos y dependencias
+## 🌟 Características principales
 
-Genera diagramas interactivos de la arquitectura
+- **⚡ Análisis en tiempo real** - Resultados instantáneos
+- **📁 Multi-fuente** - Editor, GitHub o upload de archivos
+- **🎨 Diagramas interactivos** - Visualiza relaciones entre componentes
+- **🔍 Detección de issues** - Identifica problemas potenciales
+- **💡 Recomendaciones inteligentes** - Mejoras basadas en best practices
 
-Recibe recomendaciones para mejorar tu código
+## 🚀 Despliegue en Vivo
 
-🌟 Características principales
-⚡ Análisis en tiempo real - Resultados instantáneos
-
-📁 Multi-fuente - Editor, GitHub o upload de archivos
-
-🎨 Diagramas interactivos - Visualiza relaciones entre componentes
-
-🔍 Detección de issues - Identifica problemas potenciales
-
-💡 Recomendaciones inteligentes - Mejoras basadas en best practices
-
-🚀 Despliegue en Vivo
-Opción 1: 🎯 Usar la Versión en Vivo
+### Opción 1: 🎯 Usar la Versión en Vivo
 La aplicación está desplegada y funcionando:
-
-Frontend: https://code-2-diagram.vercel.app
-
-Backend: https://code-2-diagram.onrender.com
-
-🏗️ Arquitectura
-graph TD
-    A[Frontend React] --> B[Backend Node.js]
-    B --> C[Analizador de Código]
-    B --> D[GitHub API]
-    C --> E[Generador de Diagramas]
+- **Frontend**: [https://code-2-diagram.vercel.app](https://code-2-diagram.vercel.app)
+- **Backend**: [https://code-2-diagram.onrender.com](https://code-2-diagram.onrender.com)
 
 
-📦 Tech Stack
+🚀 Quick Start
+bash
+# Backend
+cd backend
+npm install
+npm run dev
+
+# Frontend  
+cd frontend
+python -m http.server 8000
+Abre: http://localhost:8000
+
+
+
+ 📦 Tech Stack
 Frontend: HTML5, CSS3, JavaScript (ES6+)
 
 Backend: Node.js, Express.js
@@ -62,8 +62,6 @@ Análisis: BabelParser, AST Analysis
 Diagramas: Mermaid.js
 
 API: GitHub REST API
-
-Deploy: Vercel + Render
 
 🎯 Open Source
 ¡Este proyecto es 100% Open Source! 🎉
@@ -75,18 +73,6 @@ Deploy: Vercel + Render
 ✅ Transparente - Sin tracking ni data collection
 
 ✅ Comunidad - Hecho por devs para devs
-
-🚀 Quick Start Local
-bash
-# Backend
-cd backend
-npm install
-npm run dev
-
-# Frontend  
-cd frontend
-python -m http.server 8000
-Abre: http://localhost:8000
 
 🤝 ¿Quieres contribuir?
 ¡Las contribuciones son bienvenidas! Este proyecto es completamente open source y se mantiene por la comunidad.
@@ -107,3 +93,5 @@ MIT License - ¡Usa este código libremente en tus proyectos!
 ¿Te ayudó esta herramienta? ¡Dale una ⭐ en GitHub!
 
 Hecho con ❤️ para la comunidad de desarrolladores
+
+![Arquitectura de Code2Diagram](./assets/images/diagrama.png)
