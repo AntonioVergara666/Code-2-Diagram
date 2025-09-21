@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code2Diagram - Análisis Avanzado</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.3.0/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-diagram-project"></i></span>
+                <span>Code2Diagram</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#how-it-works">Cómo Funciona</a></li>
+                    <li><a href="#use-cases">Casos de Uso</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>Analiza y Visualiza tu Código</h1>
+            <p>Convierte tu código en diagramas profesionales para entender mejor la arquitectura y las dependencias</p>
+        </section>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2 class="section-title"><i class="fas fa-code"></i> Ingresa tu Código</h2>
+                
+                <div class="input-methods">
+                    <button class="input-btn active" id="editorBtn"><i class="fas fa-pencil-alt"></i> Editor</button>
+                    <button class="input-btn" id="githubBtn"><i class="fab fa-github"></i> GitHub</button>
+                    <button class="input-btn" id="uploadBtn"><i class="fas fa-upload"></i> Subir Archivo</button>
+                </div>
+                
+                <div class="input-area" id="editorInput">
+                    <textarea class="code-input" id="codeInput" placeholder="Pega tu código aquí...">// Ejemplo de código para analizar
+class Database {
+  constructor() {
+    this.connection = null;
+  }
+  
+  connect() {
+    this.connection = 'Conexión establecida';
+    return this.connection;
+  }
+  
+  query(sql) {
+    return \`Resultados de: \${sql}\`;
+  }
+}
+
+class UserService {
+  constructor(db) {
+    this.db = db;
+  }
+  
+  getUsers() {
+    return this.db.query('SELECT * FROM users');
+  }
+  
+  createUser(user) {
+    return this.db.query(\`INSERT INTO users VALUES ('\${user.name}')\`);
+  }
+}
+
+class AuthService {
+  constructor(db) {
+    this.db = db;
+  }
+  
+  login(username, password) {
+    return this.db.query(\`SELECT * FROM users WHERE username='\${username}'\`);
+  }
+  
+  logout() {
+    return 'Sesión cerrada';
+  }
+}
+
+// Uso de las clases
+const db = new Database();
+db.connect();
+
+const userService = new UserService(db);
+const authService = new AuthService(db);</textarea>
+                </div>
+                
+                <div class="input-area" id="githubInput" style="display: none;">
+                    <div class="github-input">
+                        <input type="text" placeholder="usuario/repositorio" id="repoInput">
+                        <button class="action-btn" id="loadRepoBtn"><i class="fas fa-download"></i> Cargar</button>
+                    </div>
+                    <p style="color: #94a3b8; font-size: 0.9rem; margin-top: 10px;">Ejemplo: facebook/react</p>
+                </div>
+                
+                <div class="input-area" id="uploadInput" style="display: none;">
+                    <div style="border: 2px dashed #475569; padding: 30px; text-align: center; border-radius: 8px;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #475569; margin-bottom: 15px;"></i>
+                        <p style="color: #94a3b8;">Arrastra archivos aquí o</p>
+                        <input type="file" id="fileInput" style="display: none;" accept=".js,.ts,.java,.py">
+                        <button class="action-btn" id="fileSelectBtn"><i class="fas fa-file"></i> Seleccionar Archivos</button>
+                    </div>
+                </div>
+                
+                <button class="action-btn" id="analyzeBtn" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-bolt"></i> Analizar Código
+                </button>
+                
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number" id="classCount">0</div>
+                        <div class="stat-label">Clases</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="methodCount">0</div>
+                        <div class="stat-label">Métodos</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="dependencyCount">0</div>
+                        <div class="stat-label">Dependencias</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <h2 class="section-title"><i class="fas fa-project-diagram"></i> Diagrama Generado</h2>
+                
+                <div class="diagram-container" id="diagram">
+                    <div style="text-align: center; padding: 40px 20px; color: #64748b;">
+                        <i class="fas fa-project-diagram" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>El diagrama se generará aquí después del análisis</p>
+                    </div>
+                </div>
+                
+                <div class="analysis-results">
+                    <h3 class="section-title"><i class="fas fa-chart-bar"></i> Resultados del Análisis</h3>
+                    
+                    <div class="results-grid" id="resultsGrid">
+                        <div class="result-card">
+                            <h4>Dependencias Detectadas</h4>
+                            <ul class="dependencies-list">
+                                <li>Esperando análisis...</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Posibles Issues</h4>
+                            <ul class="issues-list">
+                                <li>Esperando análisis...</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="result-card">
+                            <h4>Recomendaciones</h4>
+                            <ul class="recommendations-list">
+                                <li>Esperando análisis...</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <p>Analizando código y generando diagrama...</p>
+        </div>
+        
+        <section class="features" id="features">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-sitemap"></i></div>
+                <h3>Visualización de Dependencias</h3>
+                <p>Descubre cómo se relacionan las clases y módulos en tu código con diagramas claros y profesionales.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bug"></i></div>
+                <h3>Detección de Issues</h3>
+                <p>Identifica posibles problemas arquitectónicos y de seguridad antes de que lleguen a producción.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                <h3>Análisis Rápido</h3>
+                <p>Obtén resultados instantáneos con nuestro motor de análisis optimizado para proyectos grandes.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Code2Diagram - Herramienta de análisis de código &copy; 2023</p>
+            <p>Desarrollado con ❤️ para la comunidad de desarrolladores</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

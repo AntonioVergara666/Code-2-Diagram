@@ -1,0 +1,124 @@
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const apiRoutes = require('./routes/api');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// 🔧 Configuración COMPLETA de CORS - Esto soluciona los problemas de conexión
+app.use(cors({
+  origin: [
+    'http://127.0.0.1:5500',    // Live Server default
+    'http://localhost:5500',    // Live Server default  
+    'http://127.0.0.1:3000',
+    'http://localhost:3000',
+    'http://127.0.0.1:8000',
+    'http://localhost:8000'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
+}));
+
+// 📦 Middleware para parsing de datos
+app.use(bodyParser.json({ 
+  limit: '10mb',
+  verify: (req, res, buf) => {
+    req.rawBody = buf;
+  }
+}));
+
+app.use(bodyParser.urlencoded({ 
+  extended: true, 
+  limit: '10mb' 
+}));
+
+// 🔍 Logger de requests para debugging
+app.use((req, res, next) => {
+  console.log(`📍 ${new Date().toISOString()} ${req.method} ${req.path}`);
+  if (req.method === 'POST' && req.body) {
+    console.log('📦 Body recibido:', JSON.stringify(req.body).substring(0, 200) + '...');
+  }
+  next();
+});
+
+// 📋 Manejar preflight requests (OPTIONS)
+app.options('*', cors());
+
+// 🛣️ Routes
+app.use('/api', apiRoutes);
+
+// 🏠 Ruta de raíz - Información de la API
+app.get('/', (req, res) => {
+  res.json({ 
+    message: '🚀 Code2Diagram API - Backend funcionando', 
+    version: '1.0.0',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      analyze: 'POST /api/analyze',
+      health: 'GET /api/health',
+      github: 'POST /api/github/content'
+    },
+    status: 'online',
+    documentation: 'Ver consola para logs detallados'
+  });
+});
+
+// ❌ Manejo de rutas no encontradas
+app.use('*', (req, res) => {
+  res.status(404).json({
+    error: 'Ruta no encontrada',
+    path: req.originalUrl,
+    availableEndpoints: [
+      'GET /',
+      'GET /api/health',
+      'POST /api/analyze',
+      'POST /api/github/content'
+    ]
+  });
+});
+
+// ⚠️ Manejo de errores global
+app.use((error, req, res, next) => {
+  console.error('💥 Error global:', error);
+  res.status(500).json({
+    error: 'Error interno del servidor',
+    message: error.message,
+    timestamp: new Date().toISOString()
+  });
+});
+
+// 🎯 Inicialización del servidor
+app.listen(PORT, '0.0.0.0', () => {
+  console.log('='.repeat(60));
+  console.log('🚀 CODECRAFT BACKEND INICIADO CORRECTAMENTE');
+  console.log('='.repeat(60));
+  console.log(`✅ Servidor ejecutándose en: http://localhost:${PORT}`);
+  console.log(`✅ También disponible en: http://127.0.0.1:${PORT}`);
+  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`🔧 Endpoint de análisis: http://localhost:${PORT}/api/analyze`);
+  console.log('='.repeat(60));
+  console.log('📋 Endpoints disponibles:');
+  console.log('   GET  /              - Información de la API');
+  console.log('   GET  /api/health    - Estado del servidor');
+  console.log('   POST /api/analyze   - Analizar código');
+  console.log('   POST /api/github/*  - Contenido de GitHub');
+  console.log('='.repeat(60));
+  console.log('🔍 Los requests se mostrarán aquí en tiempo real...');
+  console.log('='.repeat(60));
+});
+
+// 🛑 Manejo graceful de shutdown
+process.on('SIGINT', () => {
+  console.log('\n🔻 Recibido SIGINT. Cerrando servidor gracefully...');
+  process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+  console.log('\n🔻 Recibido SIGTERM. Cerrando servidor gracefully...');
+  process.exit(0);
+});
+
+// 🎯 Export para testing
+module.exports = app;
