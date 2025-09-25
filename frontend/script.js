@@ -10,16 +10,27 @@ mermaid.initialize({
     }
 });
 
-// Configuración automática de API URL
-const isDevelopment = window.location.hostname === 'localhost' || 
-                     window.location.hostname === '127.0.0.1';
+// Detectar ambiente automáticamente - VERSIÓN ROBUSTA
+function getApiBaseUrl() {
+    const hostname = window.location.hostname;
+    
+    // Desarrollo local
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:3000/api';
+    }
+    
+    // Vercel preview deployments
+    if (hostname.includes('vercel.app')) {
+        return 'https://code-2-diagram.onrender.com/api';
+    }
+    
+    // Producción (tu dominio personalizado si lo agregas después)
+    return 'https://code-2-diagram.onrender.com/api';
+}
 
-const API_BASE_URL = isDevelopment 
-  ? 'http://localhost:3000/api'
-  : 'https://code-2-diagram.onrender.com/api';
-
-console.log('🚀 Conectando a API:', API_BASE_URL);
-
+const API_BASE_URL = getApiBaseUrl();
+console.log('🌐 Ambiente:', window.location.hostname);
+console.log('🚀 API URL:', API_BASE_URL);
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {

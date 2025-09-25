@@ -10,28 +10,56 @@ const PORT = process.env.PORT || 3000;
 // En backend/server.js
 const cors = require('cors');
 
-const allowedOrigins = [
-  'http://localhost:8000',
-  'http://localhost:3000',
-  'https://tu-frontend.vercel.app',
-  'https://tu-frontend.netlify.app',
-  /\.vercel\.app$/,
-  /\.netlify\.app$/,
-  /\.onrender\.com$/
-];
-
-app.use(cors({
+// Configuración COMPLETA de CORS
+const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.some(pattern => 
-        typeof pattern === 'string' ? origin === pattern : pattern.test(origin)
-    )) {
+    // Lista de dominios permitidos
+    const allowedOrigins = [
+      'https://code-2-diagram.vercel.app',
+      'https://code-2-diagram.onrender.com',
+      'http://localhost:8000',
+      'http://localhost:3000',
+      'http://127.0.0.1:8000',
+      'http://127.0.0.1:3000'
+    ];
+    
+    // Permitir requests sin origin (como curl, postman)
+    if (!origin) return callback(null, true);
+    
+    // Verificar si el origin está permitido
+    if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.log('🚫 CORS bloqueado para:', origin);
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true
-}));
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  optionsSuccessStatus: 200
+};
+
+// Aplicar CORS
+app.use(cors(corsOptions));
+
+// Manejar preflight requests EXPLÍCITAMENTE
+app.options('*', cors(corsOptions));
+
+// Headers adicionales para CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://code-2-diagram.vercel.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  
+  // Responder inmediatamente a preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  
+  next();
+});
 
 // 📦 Middleware para parsing de datos
 app.use(bodyParser.json({ 
